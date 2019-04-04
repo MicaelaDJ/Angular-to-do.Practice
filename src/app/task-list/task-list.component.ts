@@ -6,14 +6,6 @@ import { Task } from '../models/task.model';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
-// export class TaskListComponent implements OnInit {
-//
-//   constructor() { }
-//
-//   ngOnInit() {
-//   }
-//
-// }
 export class TaskListComponent {
   @Input() childTaskList: Task[];
   @Output() clickSender = new EventEmitter();
@@ -35,5 +27,16 @@ export class TaskListComponent {
     } else {
       return "bg-info";
     }
+  }
+
+  filterByCompleteness: string = "incompleteTasks";
+
+
+  onChange(optionFromMenu) {
+    this.filterByCompleteness = optionFromMenu;
+  }
+
+  toggleDone(clickedTask: Task, setCompleteness: boolean) {
+    clickedTask.done = setCompleteness;
   }
 }
